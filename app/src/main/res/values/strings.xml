@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Reciclaje</string>
+    <string name="tv_registrar_usuario">Registrar usuario</string>
+    <string name="et_apellidos">Apellidos</string>
+    <string name="et_nombres">Nombres</string>
+    <string name="et_username">Nombre de usuario</string>
+    <string name="et_password">Contraseña</string>
+    <string name="et_confirm_password">Confirmar contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+</resources>
+
