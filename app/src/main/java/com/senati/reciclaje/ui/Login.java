@@ -1,4 +1,4 @@
-package com.senati.reciclaje;
+package com.senati.reciclaje.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.senati.reciclaje.R;
 import com.senati.reciclaje.connection.DataBaseHelper;
 
 public class Login extends AppCompatActivity {

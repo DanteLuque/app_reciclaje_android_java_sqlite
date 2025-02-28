@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Reciclaje"
         tools:targetApi="31">
         <activity
-            android:name=".Login"
+            android:name=".ui.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +23,11 @@
         </activity>
 
         <activity
-            android:name=".Signup"
+            android:name=".ui.Signup"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false"/>
     </application>
 

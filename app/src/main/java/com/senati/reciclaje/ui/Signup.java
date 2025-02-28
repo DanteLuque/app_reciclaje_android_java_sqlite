@@ -1,4 +1,4 @@
-package com.senati.reciclaje;
+package com.senati.reciclaje.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.senati.reciclaje.R;
 import com.senati.reciclaje.connection.DataBaseHelper;
 
 public class Signup extends AppCompatActivity {

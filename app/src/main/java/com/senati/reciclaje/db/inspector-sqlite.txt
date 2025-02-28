@@ -1,1 +1,0 @@
-view>tool windows>App Inspector
