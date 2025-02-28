@@ -10,18 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
 import com.senati.reciclaje.connection.DataBaseHelper;
+import com.senati.reciclaje.repository.UserRepository;
 
 public class Login extends AppCompatActivity {
 
     private EditText et_username, et_password;
-    private DataBaseHelper dataBaseHelper;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        userRepository = new UserRepository(this);
         loadUI();
-        dataBaseHelper = new DataBaseHelper(this);
     }
 
     public void login(View view){
@@ -29,16 +30,16 @@ public class Login extends AppCompatActivity {
 
         String username = et_username.getText().toString();
         String password = et_password.getText().toString();
-        boolean inserted = dataBaseHelper.LoginUser(username, password);
 
-        if(inserted){
+        if (userRepository.loginUser(username, password)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             ToastShort("Inicio de sesión exitoso");
             finish();
+        } else {
+            ToastShort("Credenciales incorrectas");
         }
 
-        clearFields();
     }
 
     public void redirectRegister(View view){
