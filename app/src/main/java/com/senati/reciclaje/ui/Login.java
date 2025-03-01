@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
 import com.senati.reciclaje.repository.UserRepository;
+import com.senati.reciclaje.utils.ToastUtils;
 
 public class Login extends AppCompatActivity {
 
@@ -34,10 +33,10 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             clearFields();
-            ToastShort("Inicio de sesión exitoso");
+            ToastUtils.showToastShort(this,"Inicio de sesión exitoso");
             finish();
         } else {
-            ToastShort("Credenciales incorrectas");
+            ToastUtils.showToastShort(this,"Credenciales incorrectas");
         }
     }
 
@@ -50,9 +49,6 @@ public class Login extends AppCompatActivity {
     public void loadUI(){
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
-    }
-    public void ToastShort(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateFields() {

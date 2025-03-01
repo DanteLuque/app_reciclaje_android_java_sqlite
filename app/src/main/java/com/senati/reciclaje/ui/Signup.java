@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.senati.reciclaje.R;
 import com.senati.reciclaje.model.User;
 import com.senati.reciclaje.repository.UserRepository;
+import com.senati.reciclaje.utils.ToastUtils;
 
 public class Signup extends AppCompatActivity {
 
@@ -40,14 +41,14 @@ public class Signup extends AppCompatActivity {
         );
 
         if (userRepository.registerUser(user)) {
-            ToastShort("Usuario registrado exitosamente");
+            ToastUtils.showToastShort(this,"Usuario registrado exitosamente");
             clearFields();
 
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
             finish();
         } else {
-            ToastShort("Error al registrar usuario");
+            ToastUtils.showToastShort(this,"Error al registrar usuario");
         }
     }
 
@@ -64,9 +65,6 @@ public class Signup extends AppCompatActivity {
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
         et_confirm_password = (EditText) findViewById(R.id.et_confirm_password);
-    }
-    public void ToastShort(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
     private boolean validateFields() {
