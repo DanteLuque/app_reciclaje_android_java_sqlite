@@ -8,12 +8,222 @@
     tools:context=".ui.MainActivity">
 
     <TextView
+        android:id="@+id/tv_control_reciclado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="16dp"
+        android:text="@string/control_recliclado"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Botón Guardar -->
+
+    <TextView
+        android:id="@+id/tv_seleccion_reciclaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/titulo_seleccion_contenido"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.254"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_control_reciclado" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_item"
+        android:layout_width="335dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_seleccion_reciclaje">
+
+        <ImageButton
+            android:id="@+id/ib_plastico"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Plástico"
+            android:src="@drawable/plastico" />
+
+        <ImageButton
+            android:id="@+id/ib_carton"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cartón"
+            android:src="@drawable/carton" />
+
+        <ImageButton
+            android:id="@+id/ib_metal"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Metales"
+            android:src="@drawable/metales" />
+
+        <ImageButton
+            android:id="@+id/ib_eletronica"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Electrónica"
+            android:src="@drawable/electronica" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_item_seleccionado"
+        android:layout_width="131dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/plastico"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout_item" />
+
+
+    <TextView
+        android:id="@+id/tv_plastico"
+        android:layout_width="110dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="44dp"
+        android:text="Plástico:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_score_plastico"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar" />
+
+    <TextView
+        android:id="@+id/tv_score_electronica"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="20dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score_metal" />
+
+    <TextView
+        android:id="@+id/tv_score_carton"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="20dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score_plastico" />
+
+    <TextView
+        android:id="@+id/tv_score_metal"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="20dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score_carton" />
+
+    <TextView
+        android:id="@+id/tv_metales"
+        android:layout_width="110dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="44dp"
+        android:text="Metales:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_score_metal"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_carton" />
+
+    <TextView
+        android:id="@+id/tv_carton"
+        android:layout_width="110dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="44dp"
+        android:text="Cartón:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_score_carton"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_plastico" />
+
+    <TextView
+        android:id="@+id/tv_score_plastico"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar" />
+
+    <TextView
+        android:id="@+id/tv_electronica"
+        android:layout_width="110dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="44dp"
+        android:text="Electrónica:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_score_electronica"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_metales" />
+
+    <Button
+        android:layout_width="295dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="196dp"
+        android:text="Finalizar"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar" />
+
+    <Button
+        android:id="@+id/btn_guardar"
+        android:layout_width="295dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:text="Guardar"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_cantidad_ingresada" />
+
+    <EditText
+        android:id="@+id/et_cantidad_ingresada"
+        android:layout_width="295dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:hint="Cantidad"
+        android:inputType="number"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_item_seleccionado" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

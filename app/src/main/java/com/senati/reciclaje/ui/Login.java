@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
-import com.senati.reciclaje.connection.DataBaseHelper;
 import com.senati.reciclaje.repository.UserRepository;
 
 public class Login extends AppCompatActivity {
@@ -21,8 +20,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userRepository = new UserRepository(this);
         loadUI();
+        userRepository = new UserRepository(this);
     }
 
     public void login(View view){
@@ -34,6 +33,7 @@ public class Login extends AppCompatActivity {
         if (userRepository.loginUser(username, password)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            clearFields();
             ToastShort("Inicio de sesión exitoso");
             finish();
         } else {

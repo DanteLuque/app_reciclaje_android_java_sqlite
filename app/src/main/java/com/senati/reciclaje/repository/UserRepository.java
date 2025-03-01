@@ -4,57 +4,53 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
+import com.senati.reciclaje.connection.DatabaseManager;
 import com.senati.reciclaje.model.User;
 
-public class UserRepository extends SQLiteOpenHelper {
+public class UserRepository extends BaseRepository {
 
-    private static final String DB_NAME = "db_reciclaje";
-    private static final int DB_VERSION = 1;
-    private static final String USER_TABLE = "users";
+    private static final String TABLE_NAME = "users";
+
+    public UserRepository(SQLiteDatabase db) {
+        super(db);
+    }
 
     public UserRepository(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(DatabaseManager.getInstance(context).getDatabase());
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + USER_TABLE + " (" +
+    public void createTable() {
+        String createTableQuery = "CREATE TABLE " + TABLE_NAME + " (" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "APELLIDOS TEXT NOT NULL, " +
                 "NOMBRES TEXT NOT NULL, " +
-                "USERNAME TEXT NOT NULL, " +
+                "USERNAME TEXT NOT NULL UNIQUE, " +
                 "PASS_USER TEXT NOT NULL)";
-        db.execSQL(createTable);
+        db.execSQL(createTableQuery);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
-        onCreate(db);
+    public void dropTable() {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
     public boolean registerUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("APELLIDOS", user.getApellidos());
         values.put("NOMBRES", user.getNombres());
         values.put("USERNAME", user.getUsername());
         values.put("PASS_USER", user.getPassword());
 
-        long result = db.insert(USER_TABLE, null, values);
-        db.close();
+        long result = db.insert(TABLE_NAME, null, values);
         return result != -1;
     }
 
     public boolean loginUser(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT ID FROM " + USER_TABLE + " WHERE USERNAME=? AND PASS_USER=?", new String[]{username, password});
+        Cursor cursor = db.rawQuery("SELECT ID FROM " + TABLE_NAME + " WHERE USERNAME=? AND PASS_USER=?", new String[]{username, password});
         boolean exists = cursor.getCount() > 0;
         cursor.close();
-        db.close();
         return exists;
     }
 }

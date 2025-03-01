@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
-import com.senati.reciclaje.connection.DataBaseHelper;
 import com.senati.reciclaje.model.User;
 import com.senati.reciclaje.repository.UserRepository;
 
@@ -22,8 +21,8 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        userRepository = new UserRepository(this);
         loadUI();
+        userRepository = new UserRepository(this);
     }
 
     // eventos

@@ -8,5 +8,7 @@
     <string name="et_confirm_password">Confirmar contraseña</string>
     <string name="registrarse">Registrarse</string>
     <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="control_recliclado">Control de reciclado</string>
+    <string name="titulo_seleccion_contenido">Seleccione el tipo de contenido a reciclar</string>
 </resources>
 
