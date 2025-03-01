@@ -39,7 +39,6 @@ public class Login extends AppCompatActivity {
         } else {
             ToastShort("Credenciales incorrectas");
         }
-
     }
 
     public void redirectRegister(View view){

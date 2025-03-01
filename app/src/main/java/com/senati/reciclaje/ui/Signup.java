@@ -10,16 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
 import com.senati.reciclaje.connection.DataBaseHelper;
+import com.senati.reciclaje.model.User;
+import com.senati.reciclaje.repository.UserRepository;
 
 public class Signup extends AppCompatActivity {
 
     private EditText et_apellidos, et_nombres, et_username, et_password, et_confirm_password;
-    private DataBaseHelper dataBaseHelper;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        userRepository = new UserRepository(this);
         loadUI();
     }
 
@@ -30,15 +33,14 @@ public class Signup extends AppCompatActivity {
         if (!validatePassword()) return;
         if (!validatePasswordMatch()) return;
 
-        String apellidos = et_apellidos.getText().toString();
-        String nombres = et_nombres.getText().toString();
-        String username = et_username.getText().toString();
-        String password = et_password.getText().toString();
+        User user = new User(
+                et_apellidos.getText().toString(),
+                et_nombres.getText().toString(),
+                et_username.getText().toString(),
+                et_password.getText().toString()
+        );
 
-        dataBaseHelper = new DataBaseHelper(this);
-        boolean isRegistered = dataBaseHelper.RegisterUser(apellidos, nombres, username, password);
-
-        if (isRegistered) {
+        if (userRepository.registerUser(user)) {
             ToastShort("Usuario registrado exitosamente");
             clearFields();
 
