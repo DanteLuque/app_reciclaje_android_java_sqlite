@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * UserContext guarda, retorna y limpia el contexto
- * generado por el usuario al iniciar sesion, esto nos permitirá
- * saber información util como el ID del usuario para interactuar
- * con otras entidades desde los activities
+ * UserContext guarda contexto generado por el usuario al iniciar sesion,
+ * esto nos permitirá saber información util como el ID del usuario
+ * para interactuar con otras entidades desde los activities obteniendo el contexto
+ * y eliminarlo al cerrar sesión
  */
 public class UserContext {
     private static final String PREF_NAME = "user_prefs";

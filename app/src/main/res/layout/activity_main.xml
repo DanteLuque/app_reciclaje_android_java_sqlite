@@ -36,8 +36,8 @@
 
     <LinearLayout
         android:id="@+id/linear_layout_item"
-        android:layout_width="335dp"
-        android:layout_height="77dp"
+        android:layout_width="355dp"
+        android:layout_height="75dp"
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +52,7 @@
             android:layout_marginEnd="20dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Plástico"
+            android:onClick="selectItem"
             android:src="@drawable/plastico" />
 
         <ImageButton
@@ -61,6 +62,7 @@
             android:layout_marginEnd="20dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Cartón"
+            android:onClick="selectItem"
             android:src="@drawable/carton" />
 
         <ImageButton
@@ -70,15 +72,17 @@
             android:layout_marginEnd="20dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Metales"
+            android:onClick="selectItem"
             android:src="@drawable/metales" />
 
         <ImageButton
             android:id="@+id/ib_eletronico"
-            android:layout_width="70dp"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="20dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Electrónica"
+            android:onClick="selectItem"
             android:src="@drawable/electronica" />
     </LinearLayout>
 
@@ -89,7 +93,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/circle_background"
         android:scaleType="centerCrop"
-        android:src="@drawable/plastico"
+        android:src="@drawable/reciclaje"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +194,6 @@
         android:id="@+id/btn_finalizar"
         android:layout_width="295dp"
         android:layout_height="55dp"
-        android:layout_marginTop="196dp"
         android:backgroundTint="@color/blue"
         android:onClick="logout"
         android:text="Finalizar"
@@ -199,17 +202,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_guardar" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_electronica"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_guardar"
         android:layout_width="295dp"
         android:layout_height="55dp"
         android:layout_marginTop="16dp"
-        android:text="Guardar"
-        android:textSize="20sp"
-        android:textColor="@color/white"
         android:backgroundTint="@color/blue"
+        android:onClick="saveItem"
+        android:text="Guardar"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_cantidad_ingresada" />
@@ -221,7 +226,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:hint="Cantidad"
-        android:inputType="number"
+        android:inputType="numberDecimal|numberSigned"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

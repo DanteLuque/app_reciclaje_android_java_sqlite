@@ -6,13 +6,13 @@ package com.senati.reciclaje.model;
  */
 public class Item {
     private Integer itemId;
-    private int userId;
-    private int numPlastico;
-    private int numCarton;
-    private int numMetal;
-    private int numElectronico;
+    private double userId;
+    private double numPlastico;
+    private double numCarton;
+    private double numMetal;
+    private double numElectronico;
 
-    public Item(Integer itemId, int userId, int numPlastico, int numCarton, int numMetal, int numElectronico) {
+    public Item(Integer itemId, int userId, double numPlastico, double numCarton, double numMetal, double numElectronico) {
         this.itemId = itemId;
         this.userId = userId;
         this.numPlastico = numPlastico;
@@ -21,7 +21,7 @@ public class Item {
         this.numElectronico = numElectronico;
     }
 
-    public int getItemId(){
+    public double getItemId(){
         return itemId;
     }
 
@@ -29,7 +29,7 @@ public class Item {
         this.itemId = itemId;
     }
 
-    public int getUserId() {
+    public double getUserId() {
         return userId;
     }
 
@@ -37,7 +37,7 @@ public class Item {
         this.userId = userId;
     }
 
-    public int getNumPlastico() {
+    public double getNumPlastico() {
         return numPlastico;
     }
 
@@ -45,7 +45,7 @@ public class Item {
         this.numPlastico = numPlastico;
     }
 
-    public int getNumCarton() {
+    public double getNumCarton() {
         return numCarton;
     }
 
@@ -53,7 +53,7 @@ public class Item {
         this.numCarton = numCarton;
     }
 
-    public int getNumMetal() {
+    public double getNumMetal() {
         return numMetal;
     }
 
@@ -61,7 +61,7 @@ public class Item {
         this.numMetal = numMetal;
     }
 
-    public int getNumElectronico() {
+    public double getNumElectronico() {
         return numElectronico;
     }
 

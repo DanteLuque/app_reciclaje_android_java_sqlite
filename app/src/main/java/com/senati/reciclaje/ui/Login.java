@@ -53,8 +53,8 @@ public class Login extends AppCompatActivity {
 
     // metodos
     public void loadUI(){
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
     }
 
     private boolean validateFields() {

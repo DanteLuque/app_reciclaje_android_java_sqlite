@@ -74,11 +74,11 @@ public class Signup extends AppCompatActivity {
 
     // metodos
     public void loadUI(){
-        et_apellidos = (EditText) findViewById(R.id.et_apellidos);
-        et_nombres = (EditText) findViewById(R.id.et_nombres);
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
-        et_confirm_password = (EditText) findViewById(R.id.et_confirm_password);
+        et_apellidos = findViewById(R.id.et_apellidos);
+        et_nombres = findViewById(R.id.et_nombres);
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
+        et_confirm_password = findViewById(R.id.et_confirm_password);
     }
 
     private boolean validateFields() {
