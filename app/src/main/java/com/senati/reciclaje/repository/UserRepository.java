@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.senati.reciclaje.connection.DatabaseManager;
 import com.senati.reciclaje.model.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserRepository extends BaseRepository {
 
@@ -37,30 +38,31 @@ public class UserRepository extends BaseRepository {
     }
 
     public Integer registerUser(User user) {
+        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+
         ContentValues values = new ContentValues();
         values.put("APELLIDOS", user.getApellidos());
         values.put("NOMBRES", user.getNombres());
         values.put("USERNAME", user.getUsername());
-        values.put("PASS_USER", user.getPassword());
+        values.put("PASS_USER", hashedPassword);
 
         long result = db.insert(TABLE_NAME, null, values);
 
-        if (result == -1) {
-            return null;
-        }
-
-        return (int) result;
+        return result == -1 ? null : (int) result;
     }
 
     public Integer loginUser(String username, String password) {
         Cursor cursor = db.rawQuery(
-                "SELECT ID FROM " + TABLE_NAME + " WHERE USERNAME=? AND PASS_USER=?",
-                new String[]{username, password}
+                "SELECT ID, PASS_USER FROM " + TABLE_NAME + " WHERE USERNAME=?",
+                new String[]{username}
         );
 
         Integer userId = null;
         if (cursor.moveToFirst()) {
-            userId = cursor.getInt(0);
+            String storedHashedPassword = cursor.getString(1);
+            if (BCrypt.checkpw(password, storedHashedPassword)) {
+                userId = cursor.getInt(0);
+            }
         }
         cursor.close();
         return userId;
