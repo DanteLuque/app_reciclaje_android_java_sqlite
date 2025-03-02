@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
@@ -13,6 +11,7 @@ import com.senati.reciclaje.model.Item;
 import com.senati.reciclaje.model.User;
 import com.senati.reciclaje.repository.ItemRepository;
 import com.senati.reciclaje.repository.UserRepository;
+import com.senati.reciclaje.utils.FieldsUtils;
 import com.senati.reciclaje.utils.ToastUtils;
 
 public class Signup extends AppCompatActivity {
@@ -82,22 +81,13 @@ public class Signup extends AppCompatActivity {
     }
 
     private boolean validateFields() {
-        if (isEmpty(et_apellidos)) return false;
-        if (isEmpty(et_nombres)) return false;
-        if (isEmpty(et_username)) return false;
-        if (isEmpty(et_password)) return false;
-        if (isEmpty(et_confirm_password)) return false;
+        if (FieldsUtils.isEmpty(et_apellidos)) return false;
+        if (FieldsUtils.isEmpty(et_nombres)) return false;
+        if (FieldsUtils.isEmpty(et_username)) return false;
+        if (FieldsUtils.isEmpty(et_password)) return false;
+        if (FieldsUtils.isEmpty(et_confirm_password)) return false;
 
         return true;
-    }
-
-    private boolean isEmpty(EditText editText) {
-        if (editText.getText().toString().trim().isEmpty()) {
-            editText.setError("Este campo es obligatorio");
-            editText.requestFocus();
-            return true;
-        }
-        return false;
     }
 
     private boolean validateUsername() {
@@ -140,7 +130,6 @@ public class Signup extends AppCompatActivity {
         et_username.setText("");
         et_password.setText("");
         et_confirm_password.setText("");
-
         et_apellidos.requestFocus();
     }
 

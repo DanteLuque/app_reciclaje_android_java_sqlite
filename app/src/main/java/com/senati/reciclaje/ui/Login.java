@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.senati.reciclaje.R;
 import com.senati.reciclaje.context.UserContext;
 import com.senati.reciclaje.repository.UserRepository;
+import com.senati.reciclaje.utils.FieldsUtils;
 import com.senati.reciclaje.utils.ToastUtils;
 
 public class Login extends AppCompatActivity {
@@ -58,20 +59,12 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validateFields() {
-        if (isEmpty(et_username)) return false;
-        if (isEmpty(et_password)) return false;
+        if (FieldsUtils.isEmpty(et_username)) return false;
+        if (FieldsUtils.isEmpty(et_password)) return false;
 
         return true;
     }
 
-    private boolean isEmpty(EditText editText) {
-        if (editText.getText().toString().trim().isEmpty()) {
-            editText.setError("Este campo es obligatorio");
-            editText.requestFocus();
-            return true;
-        }
-        return false;
-    }
 
     private void clearFields() {
         et_username.setText("");

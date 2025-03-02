@@ -41,13 +41,7 @@ public class MainActivity extends AppCompatActivity {
         userContext = new UserContext(this);
         userId = userContext.getUserId();
 
-        if (userId == -1) {
-            Toast.makeText(this, "Error: Usuario no autenticado", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
+        if (!isValidateUser()) return;
 
         itemRepository = new ItemRepository(this);
         loadUI();
@@ -117,6 +111,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //metodos
+
+    private boolean isValidateUser() {
+        userId = userContext.getUserId();
+
+        if (userId == -1) {
+            ToastUtils.showToastShort(this, "Error: Usuario no autenticado");
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+            return false;
+        }
+        return true;
+    }
+
     private void updateScores() {
         List<Item> items = itemRepository.getItemsByUserId(userId);
         if (!items.isEmpty()) {
@@ -127,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
             tv_score_electronica.setText(String.valueOf(userItem.getNumElectronico()));
         }
     }
+
+    private void highlightSelectedButton(ImageButton selectedButton) {
+        ib_plastico.setBackgroundResource(android.R.color.transparent);
+        ib_carton.setBackgroundResource(android.R.color.transparent);
+        ib_metal.setBackgroundResource(android.R.color.transparent);
+        ib_eletronico.setBackgroundResource(android.R.color.transparent);
+
+        selectedButton.setBackgroundResource(R.drawable.bg_selected_square);
+    }
+
     public void loadUI(){
         ib_plastico = findViewById(R.id.ib_plastico);
         ib_carton = findViewById(R.id.ib_carton);
@@ -138,14 +156,5 @@ public class MainActivity extends AppCompatActivity {
         tv_score_carton =  findViewById(R.id.tv_score_carton);
         tv_score_metal = findViewById(R.id.tv_score_metal);
         tv_score_electronica =  findViewById(R.id.tv_score_electronica);
-    }
-
-    private void highlightSelectedButton(ImageButton selectedButton) {
-        ib_plastico.setBackgroundResource(android.R.color.transparent);
-        ib_carton.setBackgroundResource(android.R.color.transparent);
-        ib_metal.setBackgroundResource(android.R.color.transparent);
-        ib_eletronico.setBackgroundResource(android.R.color.transparent);
-
-        selectedButton.setBackgroundResource(R.drawable.bg_selected_square);
     }
 }
