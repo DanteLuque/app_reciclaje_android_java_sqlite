@@ -225,7 +225,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:hint="Cantidad"
+        android:hint="Cantidad en Kg"
         android:inputType="numberDecimal|numberSigned"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
