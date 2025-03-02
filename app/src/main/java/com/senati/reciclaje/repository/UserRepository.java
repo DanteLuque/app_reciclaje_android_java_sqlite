@@ -36,7 +36,7 @@ public class UserRepository extends BaseRepository {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
-    public boolean registerUser(User user) {
+    public Integer registerUser(User user) {
         ContentValues values = new ContentValues();
         values.put("APELLIDOS", user.getApellidos());
         values.put("NOMBRES", user.getNombres());
@@ -44,12 +44,34 @@ public class UserRepository extends BaseRepository {
         values.put("PASS_USER", user.getPassword());
 
         long result = db.insert(TABLE_NAME, null, values);
-        return result != -1;
+
+        if (result == -1) {
+            return null;
+        }
+
+        return (int) result;
     }
 
-    public boolean loginUser(String username, String password) {
-        Cursor cursor = db.rawQuery("SELECT ID FROM " + TABLE_NAME + " WHERE USERNAME=? AND PASS_USER=?", new String[]{username, password});
-        boolean exists = cursor.getCount() > 0;
+    public Integer loginUser(String username, String password) {
+        Cursor cursor = db.rawQuery(
+                "SELECT ID FROM " + TABLE_NAME + " WHERE USERNAME=? AND PASS_USER=?",
+                new String[]{username, password}
+        );
+
+        Integer userId = null;
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(0);
+        }
+        cursor.close();
+        return userId;
+    }
+
+    public boolean userExists(String username) {
+        Cursor cursor = db.rawQuery(
+                "SELECT 1 FROM " + TABLE_NAME + " WHERE USERNAME=?",
+                new String[]{username}
+        );
+        boolean exists = cursor.moveToFirst();
         cursor.close();
         return exists;
     }

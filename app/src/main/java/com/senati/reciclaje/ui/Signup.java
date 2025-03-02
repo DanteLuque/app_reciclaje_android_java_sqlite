@@ -9,7 +9,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
+import com.senati.reciclaje.model.Item;
 import com.senati.reciclaje.model.User;
+import com.senati.reciclaje.repository.ItemRepository;
 import com.senati.reciclaje.repository.UserRepository;
 import com.senati.reciclaje.utils.ToastUtils;
 
@@ -33,22 +35,34 @@ public class Signup extends AppCompatActivity {
         if (!validatePassword()) return;
         if (!validatePasswordMatch()) return;
 
+        if (userRepository.userExists(et_username.getText().toString())) {
+            ToastUtils.showToastShort(this, "El nombre de usuario ya existe");
+            return;
+        }
+
         User user = new User(
+                null,
                 et_apellidos.getText().toString(),
                 et_nombres.getText().toString(),
                 et_username.getText().toString(),
                 et_password.getText().toString()
         );
 
-        if (userRepository.registerUser(user)) {
-            ToastUtils.showToastShort(this,"Usuario registrado exitosamente");
+        Integer userId = userRepository.registerUser(user);
+
+        if (userId != null) {
+            ItemRepository itemRepository = new ItemRepository(this);
+            Item newItem = new Item(null, userId, 0, 0, 0, 0);
+            itemRepository.saveItems(newItem);
+
+            ToastUtils.showToastShort(this, "Usuario registrado exitosamente");
             clearFields();
 
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
             finish();
         } else {
-            ToastUtils.showToastShort(this,"Error al registrar usuario");
+            ToastUtils.showToastShort(this, "Error al registrar usuario");
         }
     }
 

@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,10 +32,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //eventos
+    public void saveItem(View view) {
+        Toast.makeText(this, "Esto sera accionado por el boton guardar, guardará la cantidad ", Toast.LENGTH_SHORT).show();
+    }
+
+    public void selectItem(View view) {
+        int id = view.getId();
+
+        if (id == R.id.ib_plastico) {
+            iv_item_seleccionado.setImageResource(R.drawable.plastico);
+            Toast.makeText(this, "Plástico seleccionado", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.ib_carton) {
+            iv_item_seleccionado.setImageResource(R.drawable.carton);
+            Toast.makeText(this, "Cartón seleccionado", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.ib_metal) {
+            iv_item_seleccionado.setImageResource(R.drawable.metales);
+            Toast.makeText(this, "Metal seleccionado", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.ib_eletronico) {
+            iv_item_seleccionado.setImageResource(R.drawable.electronica);
+            Toast.makeText(this, "Electrónico seleccionado", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Selección no válida", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     public void logout(View view){
         Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
     }
+
+
 
     //metodos
     public void loadUI(){

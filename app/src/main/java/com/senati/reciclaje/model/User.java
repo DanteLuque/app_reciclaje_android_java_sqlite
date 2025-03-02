@@ -1,13 +1,18 @@
 package com.senati.reciclaje.model;
 
+/**
+ * Entidad User. Plantilla requiere parametros "apellidos, nombres,
+ * username, password"
+ */
 public class User {
-    private int id;
+    private Integer id;
     private String apellidos;
     private String nombres;
     private String username;
     private String password;
 
-    public User(String apellidos, String nombres, String username, String password) {
+    public User(Integer id, String apellidos, String nombres, String username, String password) {
+        this.id = id;
         this.apellidos = apellidos;
         this.nombres = nombres;
         this.username = username;

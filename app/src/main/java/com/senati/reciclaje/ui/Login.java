@@ -7,6 +7,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.senati.reciclaje.R;
+import com.senati.reciclaje.context.UserContext;
 import com.senati.reciclaje.repository.UserRepository;
 import com.senati.reciclaje.utils.ToastUtils;
 
@@ -14,6 +15,7 @@ public class Login extends AppCompatActivity {
 
     private EditText et_username, et_password;
     private UserRepository userRepository;
+    private UserContext userContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,22 +23,26 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loadUI();
         userRepository = new UserRepository(this);
+        userContext = new UserContext(this);
     }
 
-    public void login(View view){
+    public void login(View view) {
         if (!validateFields()) return;
 
         String username = et_username.getText().toString();
         String password = et_password.getText().toString();
 
-        if (userRepository.loginUser(username, password)) {
-            Intent intent = new Intent(this, MainActivity.class);
+        Integer userId = userRepository.loginUser(username, password);
+
+        if (userId != null) {
+            userContext.saveUserId(userId);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             clearFields();
-            ToastUtils.showToastShort(this,"Inicio de sesión exitoso");
+            ToastUtils.showToastShort(this, "Inicio de sesión exitoso");
             finish();
         } else {
-            ToastUtils.showToastShort(this,"Credenciales incorrectas");
+            ToastUtils.showToastShort(this, "Credenciales incorrectas");
         }
     }
 

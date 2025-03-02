@@ -4,7 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Implementación del patrón Singleton
+ * DatabaseManager es una clase que implementa el patrón de diseño "Singleton"
+ * Esto permite que se genere solo una instancia de la Base de Datos y que dicha
+ * instancia genere una conexion viable para toda la app
  */
 public class DatabaseManager {
     private static DatabaseManager instance;
