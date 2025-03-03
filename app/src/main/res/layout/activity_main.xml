@@ -20,8 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Botón Guardar -->
-
     <TextView
         android:id="@+id/tv_seleccion_reciclaje"
         android:layout_width="wrap_content"

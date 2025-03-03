@@ -21,11 +21,13 @@ public class Item {
         this.numElectronico = numElectronico;
     }
 
-    public double getItemId(){
+    public Item(){}
+
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId){
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
